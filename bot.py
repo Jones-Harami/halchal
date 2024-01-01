@@ -128,7 +128,8 @@ async def main(bot: Client, message: Message):
                                      disable_web_page_preview=True)
             return
 
-        await only_admin_access(bot, message)
+        if user_id not in Config.BOT_OWNER:
+        await cmd.reply_text("You do not have permission to perform this action.")
         return
 
         await message.reply_text(
