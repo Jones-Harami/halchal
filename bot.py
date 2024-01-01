@@ -113,6 +113,7 @@ async def main(bot: Client, message: Message):
 
         user = await get_user(message.from_user.id)
 
+
         if not user["shortener_api"]:
             return await message.reply_text(f"First Connect With Your Account Using /shortener base_site yourapikey")
 
@@ -128,8 +129,7 @@ async def main(bot: Client, message: Message):
                                      disable_web_page_preview=True)
             return
             
-            user_id = message.from_user.id
-        if Config.OTHER_USERS_CAN_SAVE_FILE(user_id) is False:
+        if Config.OTHER_USERS_CAN_SAVE_FILE(message.from_user.id) is False:
             return
 
         await message.reply_text(
