@@ -129,7 +129,7 @@ async def main(bot: Client, message: Message):
                                      disable_web_page_preview=True)
             return
             
-        if Config.OTHER_USERS_CAN_SAVE_FILE(message) is False:
+        if Config().other_users_can_save_file(message) is False:
             return
 
         await message.reply_text(
