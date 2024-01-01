@@ -16,7 +16,7 @@ async def add_user_to_database(bot: Client, cmd: Message):
             )
 
 async def only_admin_access(bot: Client, cmd: Message):
-    if not Config.OTHER_USERS_CAN_SAVE_FILE(cmd.from_user.id):
+    if Config.OTHER_USERS_CAN_SAVE_FILE is False:
         return
     elif cmd.from_user.id not in Config.BOT_OWNER:
         return
