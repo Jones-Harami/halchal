@@ -24,7 +24,7 @@ from pyrogram.types import (
 )
 from configs import Config
 from handlers.database import db
-from handlers.add_user_to_db import add_user_to_database
+from handlers.add_user_to_db import add_user_to_database, only_admin_access
 from handlers.send_file import send_media_and_reply
 from handlers.helpers import b64_to_str, str_to_b64
 from handlers.check_user_status import handle_user_status
@@ -129,8 +129,7 @@ async def main(bot: Client, message: Message):
                                      disable_web_page_preview=True)
             return
             
-        if Config().other_users_can_save_file(message) is False:
-            return
+        await only_admin_access(bot, cmd)
 
         await message.reply_text(
             text="**Choose an option To Upload Your Files**",
