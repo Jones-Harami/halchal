@@ -112,7 +112,7 @@ async def main(bot: Client, message: Message):
     if message.chat.type == enums.ChatType.PRIVATE:
         user_id = message.from_user.id
         user = await get_user(user_id)
-
+        await only_admin_access(bot, message)
 
         if not user["shortener_api"]:
             return await message.reply_text(f"First Connect With Your Account Using /shortener base_site yourapikey")
@@ -128,8 +128,6 @@ async def main(bot: Client, message: Message):
             await message.reply_text("Sorry, You are banned!\n\nContact [Support Group](https://t.me/JoinOT)",
                                      disable_web_page_preview=True)
             return
-            
-        await only_admin_access(bot, cmd)
 
         await message.reply_text(
             text="**Choose an option To Upload Your Files**",
