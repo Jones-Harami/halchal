@@ -111,7 +111,7 @@ async def main(bot: Client, message: Message):
 
     if message.chat.type == enums.ChatType.PRIVATE:
         user_id = message.from_user.id
-        user = await get_user(message.from_user.id)
+        user = await get_user(user_id)
 
 
         if not user["shortener_api"]:
@@ -129,7 +129,7 @@ async def main(bot: Client, message: Message):
                                      disable_web_page_preview=True)
             return
             
-        if Config.OTHER_USERS_CAN_SAVE_FILE(user_id) is False:
+        if Config.OTHER_USERS_CAN_SAVE_FILE(message) is False:
             return
 
         await message.reply_text(
