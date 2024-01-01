@@ -19,9 +19,10 @@ async def only_admin_access(bot: Client, cmd: Message):
     user_id = cmd.from_user.id
 
     # Check if user has admin access and file-saving permission
-    if not Config.OTHER_USERS_CAN_SAVE_FILE or user_id not in Config.BOT_OWNER:
-        if not Config.OTHER_USERS_CAN_SAVE_FILE:
+    if Config.OTHER_USERS_CAN_SAVE_FILE is False or user_id not in Config.BOT_OWNER:
+        if Config.OTHER_USERS_CAN_SAVE_FILE is False:
             await cmd.reply_text("You do not have permission to save files.")
+            return
         elif user_id not in Config.BOT_OWNER:
             await cmd.reply_text("You do not have permission to perform this action.")
         return
