@@ -17,11 +17,6 @@ class Config(object):
 	FORWARD_AS_COPY = bool(os.environ.get("FORWARD_AS_COPY", True))
 	BROADCAST_AS_COPY = bool(os.environ.get("BROADCAST_AS_COPY", True))
 	BANNED_CHAT_IDS = list(set(int(x) for x in os.environ.get("BANNED_CHAT_IDS", "").split()))
-	OTHER_USERS_CAN_SAVE_FILE = lambda self, message: (
-        bool(os.environ.get("OTHER_USERS_CAN_SAVE_FILE", False))
-        if message.from_user.id in self.BOT_OWNER
-        else True
-	)
 	ABOUT_BOT_TEXT = f"""
 This is Permanent Files Store Bot!
 Send me any file I will save it in my Database. Also works for channel. Add me to channel as Admin with Edit Permission, I will add Save Uploaded File in Channel & add Sharable Button Link.
