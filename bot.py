@@ -129,7 +129,7 @@ async def main(bot: Client, message: Message):
             return
 
         if user_id not in Config.BOT_OWNER:
-        await cmd.reply_text("You do not have permission to perform this action.")
+        await message.reply_text("You do not have permission to perform this action.")
         return
 
         await message.reply_text(
